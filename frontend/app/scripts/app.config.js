@@ -97,7 +97,7 @@ angular
     $httpProvider.interceptors.push('authInterceptor');
   })
 
-.constant('API_URL', 'https://buynowclub.herokuapp.com/') //'http://localhost:3000/')
+.constant('API_URL', 'http://localhost:3000/') //'https://buynowclub.herokuapp.com/') 
 
 .run(function ($window) {
   var params = $window.location.search.substring(1);

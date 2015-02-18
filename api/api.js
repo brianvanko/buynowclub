@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 ////// CORS //////
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Origin', 'https://buynowclub.herokuapp.com');
+	res.header('Access-Control-Allow-Origin', 'http://localhost:9000');
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(express.static(__dirname + '/frontend/app'));
+app.use(express.static(__dirname + '/frontend/app/'));
 
 ////// CONNECT TO DB //////
 mongoose.connect(config.DB_URL);
