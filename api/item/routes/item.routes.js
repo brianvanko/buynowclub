@@ -11,11 +11,11 @@ module.exports = function(app, express) {
 	// 	next();
 	// });
 
-	itemRouter.route('/')
+	itemRouter.route('/items/')
 		.get(itemService.getAll)
 		.post(itemService.createItem);
 
-	itemRouter.route('/:item_id')
+	itemRouter.route('/items/:item_id')
 		.get(itemService.findItem)
 		.put(itemService.editItem)
 		.delete(itemService.deleteItem);

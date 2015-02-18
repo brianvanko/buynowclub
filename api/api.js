@@ -37,7 +37,7 @@ itemRoutes = require('./item/routes/item.routes')(app, express);
 userRoutes = require('./user/routes/user.routes')(app, express);
 
 
-app.use('/items', itemRoutes);
+app.use('/api', itemRoutes);
 
 // CATCH ALL AND DEFAULT INDEX
 app.get('*', function(req, res) {
