@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL) {
+  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
 
   	$urlRouterProvider.otherwise('/');
 
@@ -95,6 +95,8 @@ angular
    })
 
     $httpProvider.interceptors.push('authInterceptor');
+
+    $locationProvider.html5Mode(true);
   })
 
 .constant('API_URL', 'https://buynowclub.herokuapp.com/') //'http://localhost:3000/') 
