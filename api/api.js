@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use(express.static(__dirname + '/frontend/app/'));
+app.use(express.static(__dirname + '/public'));
 
 ////// CONNECT TO DB //////
 mongoose.connect(config.DB_URL);
@@ -40,7 +40,7 @@ app.use('/items', itemRoutes);
 
 // CATCH ALL AND DEFAULT INDEX
 app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname + '/frontend/app/index.html'));
+	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 ////// CREATE SERVER //////

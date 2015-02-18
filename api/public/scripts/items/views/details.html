@@ -1,0 +1,49 @@
+<div class='article featured-content'>
+	<div class="image-wrapper">
+		<a ng-href='{{item.itemData.link}}' target='_blank'>
+			<img ng-src='images/lg/{{item.itemData.lg_img}}'></img>
+		</a>
+	</div>
+	<div class='content-wrapper'>
+		<div class='category-group'>
+			<h2 class='category'>
+				<a>{{item.itemData.categories}}</a>
+			</h2>
+			<span class='sep'>/</span>
+			<h3 class='subcategory' ng-if='item.itemData.subcategory'>
+				<a>{{item.itemData.subcategory}}</a>
+			</h3>
+		</div>
+		<div class='copy-wrapper'>
+			<h1 class='article-title text-center'>{{ item.itemData.name }}</h1>
+			<p>{{ item.itemData.description }}</p>
+		</div>
+		<div class='ui-wrapper'>
+			<div class='buy'>
+				<a ng-href="{{item.itemData.link}}" target='_blank'>
+					<span class='action'>Buy Now</span>
+					<span class='sep'>/</span>
+					<span class='cost'>{{item.itemData.price}}</span>
+				</a>
+			</div>
+			<div class='social ss'>
+				<a class="facebook facebook-share pointer" ng-click='vm.fb_share(item._id)'>
+							<span class="like">LIKE</span>
+						</a>
+						<!--<a class='twitter twitter-share' href="#">
+							<span class="tweet">TWEET</span>
+						</a> -->
+					<!-- <a class="facebook facebook-share" data-share="facebook" data-title="{{item.name}}" data-description="{{item.description" data-image data-link="https://safe-lake-9322.herokuapp.com/items/{{item._id}}" href="#">
+						<span class="like">LIKE</span>
+					</a> -->
+					<!-- <a class='twitter twitter-share' href="#">
+						<span class="tweet">TWEET</span>
+					</a> -->
+					<a ng-click='vm.saveToStash(item._id)' class='stash'>
+						<span class='stash pointer'>STASH</span>
+					</a>
+				</div>
+		</div>
+	</div>
+</div>
+
