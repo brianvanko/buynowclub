@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 ////// CORS //////
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Origin', 'http://localhost:9000');
+	res.header('Access-Control-Allow-Origin', 'https://dl.dropboxusercontent.com/');
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
