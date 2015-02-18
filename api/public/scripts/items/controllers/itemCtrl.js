@@ -9,15 +9,15 @@ angular.module("BuyNowClub")
 
 	vm.fb_share = function(item){
 		
-		// FB.ui({
-		//   method: 'feed',
-		//   name: item.name,
-		//   caption: 'New on Buy Now Club',
-		//   description: item.description,
-		//   picture: "https://buynowclub.herokuapp.com/images/thumb/" + item.thumb,
-		//   link: 'https://buynowclub.herokuapp.com/#/items?id=' + itemId
+		FB.ui({
+		  method: 'feed',
+		  name: item.name,
+		  caption: 'New on Buy Now Club',
+		  description: item.description,
+		  picture: "https://buynowclub.herokuapp.com/images/thumb/" + item.thumb,
+		  link: 'https://buynowclub.herokuapp.com/#/items?id=' + itemId
 		  
-		// }, function(response){});
+		}, function(response){});
 	}
 
 
