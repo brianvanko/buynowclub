@@ -15,6 +15,13 @@ angular
   		templateUrl: '/scripts/main/views/main.html'
   	})
 
+    .state('main', {
+      url: '/?fb_ref=Default',
+      controller: 'ItemCtrl',
+      controllerAs: 'vm',
+      templateUrl: '/scripts/main/views/main.html'
+    })
+
     .state('favorites', {
       url: '/favorites',
       controller: 'userFavoritesCtrl',
