@@ -1,12 +1,13 @@
 'use strict';
 
 angular
-  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL) {
+  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
 
   	$urlRouterProvider.otherwise('/');
 
   	$stateProvider
 
+    //ITEM CATEGORIES
   	.state('main', {
   		url: '/',
       controller: 'ItemCtrl',
@@ -35,24 +36,14 @@ angular
       templateUrl: '/scripts/items/views/vices.html'
     })
 
-  	.state('register', {
-  		url: '/register',
-  		templateUrl: '/scripts/users/views/register.html',
-  		controller: 'RegisterCtrl'
-  	})
-
-    .state('login', {
-      url: '/login',
-      templateUrl: '/scripts/users/views/login.html',
-      controller: 'LoginCtrl'
+    .state('itemDetail', {
+      url: '/items/:id',
+      controller: 'itemViewController',
+      controllerAs: 'item',
+      templateUrl: '/scripts/items/views/details.html'
     })
 
-    .state('logout', {
-      url: '/logout',
-      controller: 'LogoutCtrl'
-    })
-
-    //dashboard route
+    //DASHBOARD / ITEM MANAGEMENT ROUTES
     .state('adminItems', {
       url: '/admin/items',
       controller: 'ItemCtrl',
@@ -61,7 +52,7 @@ angular
     })
 
     .state('editItem', {
-      url: '/admin/items/edit?id',
+      url: '/admin/items/edit/:id',
       controller: 'itemEditController',
       controllerAs: 'item',
       templateUrl: '/scripts/items/views/edit.html'
@@ -74,20 +65,31 @@ angular
       templateUrl: '/scripts/items/views/edit.html'
     })
 
-    .state('itemDetail', {
-      url: '/items?id',
-      controller: 'itemViewController',
-      controllerAs: 'item',
-      templateUrl: '/scripts/items/views/details.html'
+    //USER AUTHENTICATION
+    .state('register', {
+      url: '/register',
+      templateUrl: '/scripts/users/views/register.html',
+      controller: 'RegisterCtrl'
+    })
+
+    .state('login', {
+      url: '/login',
+      templateUrl: '/scripts/users/views/login.html',
+      controller: 'LoginCtrl'
+    })
+
+    .state('logout', {
+      url: '/logout',
+      controller: 'LogoutCtrl'
+    })
+
+    $authProvider.loginUrl = API_URL + 'login';
+    $authProvider.signupUrl = API_URL + 'register';
+
+    $authProvider.google({
+      clientId: '1062416984167-jq1ac1ot2qqq59vlhktkqkrlk63otuvo.apps.googleusercontent.com',
+      url: API_URL + 'auth/google'
     });
-
-  $authProvider.loginUrl = API_URL + 'login';
-  $authProvider.signupUrl = API_URL + 'register';
-
-  $authProvider.google({
-    clientId: '1062416984167-jq1ac1ot2qqq59vlhktkqkrlk63otuvo.apps.googleusercontent.com',
-    url: API_URL + 'auth/google'
-  });
 
    $authProvider.facebook({
      clientId: '732824336836013',
@@ -95,9 +97,12 @@ angular
    })
 
     $httpProvider.interceptors.push('authInterceptor');
+
+    $locationProvider.html5Mode(true);
   })
 
-.constant('API_URL', 'https://buynowclub.herokuapp.com/') //'http://localhost:3000/') 
+//.constant('API_URL', 'http://localhost:3000/') 
+.constant('API_URL', 'https://buynowclub.herokuapp.com/')
 
 .run(function ($window) {
   var params = $window.location.search.substring(1);

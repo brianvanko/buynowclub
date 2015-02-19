@@ -3,7 +3,7 @@
 angular.module("BuyNowClub")
 
 .controller("ItemCtrl", function($http, $filter, $rootScope, $location, API_URL, Item, $stateParams, User) {
-
+	console.log('//////////////ItemCtrl')
 	var vm = this;
 	vm.categoryFilter = '';
 
@@ -15,7 +15,7 @@ angular.module("BuyNowClub")
 		  caption: 'New on Buy Now Club',
 		  description: item.description,
 		  picture: "https://buynowclub.herokuapp.com/images/thumb/" + item.thumb,
-		  link: 'https://buynowclub.herokuapp.com/#/items?id=' + item._id
+		  link: 'https://buynowclub.herokuapp.com/items/' + item._id
 		  
 		}, function(response){});
 	}
@@ -25,6 +25,7 @@ angular.module("BuyNowClub")
 		console.log('clicked save to stash')
 		User.saveToStash($rootScope.currentUser._id, itemId)
 		.success(function(data, status, headers, config) {
+
     		$rootScope.currentUser.favorites.push(data.itemId);
 		  })
 	}
@@ -40,8 +41,8 @@ angular.module("BuyNowClub")
 		vm.categoryFilter = '';
 	}
 
-	vm.categoryFilter = function(searchReq) {
-		console.log('searchReq: ' + searchReq, vm.items);
+	vm.searchTxt = function(searchReq) {
+		//console.log('searchReq: ' + searchReq, vm.items);
 		//vm.searchText = searchReq;
 
 		//vm.items = vm.items | filter: {{categories:searchReq}};
@@ -76,7 +77,7 @@ angular.module("BuyNowClub")
 .controller("userFavoritesCtrl", function(Item, API_URL, $rootScope, $state, User) {
 	console.log('in user favorites');
 	var vm = this;
-	var favorites = [];
+	var favorites = [];		
 
 	function isInArray(value, array) {
 	  return array.indexOf(value) > -1;
@@ -119,6 +120,7 @@ angular.module("BuyNowClub")
 })
 
 .controller('itemViewController', function($stateParams, API_URL, Item) {
+	console.log('//////////////itemViewController')
 	console.log('$stateParams.id:' + $stateParams.id)
 	var item = this;
 
@@ -158,7 +160,7 @@ angular.module("BuyNowClub")
 })
 
 .controller('itemCreateController', function(API_URL, Item){
-
+	console.log('//////////////itemCreateController')
 	var item = this;
 	item.type = 'create';
 
