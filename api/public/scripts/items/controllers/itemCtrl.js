@@ -15,7 +15,7 @@ angular.module("BuyNowClub")
 		  caption: 'New on Buy Now Club',
 		  description: item.description,
 		  picture: "https://buynowclub.herokuapp.com/images/thumb/" + item.thumb,
-		  link: 'https://buynowclub.herokuapp.com/items/' + item._id
+		  link: 'https://buynowclub.herokuapp.com' //   /items/' + item._id
 		  
 		}, function(response){});
 	}
