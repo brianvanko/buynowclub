@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
+  .module('BuyNowClub').config(function ($state, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
 
   	$urlRouterProvider.otherwise('/');
 
@@ -17,9 +17,9 @@ angular
 
     .state('fb_share', {
       url: '/?fb_ref=Default',
-      controller: 'ItemCtrl',
-      controllerAs: 'vm',
-      templateUrl: '/scripts/main/views/main.html'
+      controller: function($state){
+        $state.go('main')
+      }
     })
 
     .state('favorites', {
