@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('BuyNowClub').config(function ($state, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
+  .module('BuyNowClub').config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, $locationProvider) {
 
   	$urlRouterProvider.otherwise('/');
 
