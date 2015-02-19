@@ -11,6 +11,7 @@ angular.module("BuyNowClub")
 		
 		FB.ui({
 		  method: 'feed',
+		  redirect_uri:'https://buynowclub.herokuapp.com',
 		  name: item.name,
 		  caption: 'New on Buy Now Club',
 		  description: item.description,
