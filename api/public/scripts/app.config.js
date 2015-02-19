@@ -17,9 +17,9 @@ angular
 
     .state('fb_share', {
       url: '/?fb_ref=Default',
-      controller: function(){
-        $state.go('main')
-      }
+      controller: 'ItemCtrl',
+      controllerAs: 'vm',
+      templateUrl: '/scripts/main/views/main.html'
     })
 
     .state('favorites', {
