@@ -15,7 +15,7 @@ angular
   		templateUrl: '/scripts/main/views/main.html'
   	})
 
-    .state('main', {
+    .state('fb_share', {
       url: '/?fb_ref=Default',
       controller: 'ItemCtrl',
       controllerAs: 'vm',
