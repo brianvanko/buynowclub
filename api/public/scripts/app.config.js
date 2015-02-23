@@ -114,6 +114,10 @@ angular
     $httpProvider.interceptors.push('authInterceptor');
 
     $locationProvider.html5Mode(true);
+
+    $httpProvider.defaults.useXDomain=true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.cache = true;
   })
 
 //.constant('API_URL', 'http://localhost:3000/') 
