@@ -8,6 +8,8 @@ angular
   	$stateProvider
 
     //ITEM CATEGORIES
+    
+
   	.state('main', {
   		url: '/',
       controller: 'ItemCtrl',
@@ -15,11 +17,30 @@ angular
   		templateUrl: '/scripts/main/views/main.html'
   	})
 
-    .state('fb_share', {
-      url: '/?fb_ref=Default',
-      controller: 'ItemCtrl',
+    .state('categoryListing', {
+      url: '/:categoryName',
+      controller: 'itemCategoryController',
       controllerAs: 'vm',
-      templateUrl: '/scripts/main/views/main.html'
+      templateUrl: '/scripts/items/views/category_listing.html', 
+      resolve: {
+        items: function(Item, $stateParams) {
+          return Item.filterByCategory($stateParams.categoryName)
+            .then(function(response){
+              return response.data;
+            })
+        }
+      }
+    })
+
+    .state('categoryListing.subcategoryListing', {
+      url: '/:subcategoryName',
+      views: {
+        '@': {
+          templateUrl: '/scripts/items/views/category_listing.html',
+           controller: 'itemSubcategoryController',
+           controllerAs: 'vm'
+        }
+      }
     })
 
     .state('favorites', {
@@ -29,19 +50,6 @@ angular
       templateUrl: '/scripts/items/views/favorites.html'
     })
 
-    .state('tech', {
-      url: '/tech',
-      controller: 'ItemCtrl',
-      controllerAs: 'vm',
-      templateUrl: '/scripts/items/views/tech.html'
-    })
-
-    .state('vices', {
-      url: '/vices',
-      controller: 'ItemCtrl',
-      controllerAs: 'vm',
-      templateUrl: '/scripts/items/views/vices.html'
-    })
 
     .state('itemDetail', {
       url: '/items/:id',
@@ -111,7 +119,8 @@ angular
 //.constant('API_URL', 'http://localhost:3000/') 
 .constant('API_URL', 'https://buynowclub.herokuapp.com/')
 
-.run(function ($window) {
+.run(function ($window, $rootScope) {
+
   var params = $window.location.search.substring(1);
 
   if (params && $window.opener && $window.opener.location.origin === $window.location.origin) {

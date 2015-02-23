@@ -1,5 +1,5 @@
 <div class='container'>
-	<div ng-repeat="item in vm.items | filter:vm.searchText" class='col-md-6'>
+	<div ng-repeat="item in vm.items" class='col-md-6'>
 		<div class='article one-half'>
 			<div class="image-wrapper">
 				<a ui-sref="itemDetail({id: item._id  })">
@@ -9,11 +9,11 @@
 			<div class='content-wrapper'>
 				<div class='category-group'>
 					<h2 class='category'>
-						<a ui-sref={{item.categories.toLowerCase()}} ng-click='vm.clearFilter()' class='pointer'>{{ item.categories }}
+						<a ui-sref='categoryListing({categoryName: item.categories.toLowerCase()})' class='pointer'>{{ item.categories }}
 					</h2>
 					<span class='sep'>/</span>
 					<h3 class='subcategory' ng-if='item.subcategory'>
-						<a ng-click='vm.filterCategory(item.subcategory)' class='pointer'>{{item.subcategory}}</a>
+						<a ui-sref='categoryListing.subcategoryListing({categoryName: item.categories.toLowerCase(), subcategoryName: item.subcategory.toLowerCase()})' class='pointer'>{{item.subcategory}}</a>
 					</h3>
 				</div>
 				<div class='copy-wrapper'>
@@ -29,11 +29,8 @@
 						</a>
 					</div>
 					<div class='social ss'>
-						<a class="facebook facebook-share pointer" ng-click='vm.fb_share(item)'>
+						<!-- <a class="facebook facebook-share pointer" ng-click='vm.fb_share(item)'>
 							<span class="like">LIKE</span>
-						</a>
-						<!--<a class='twitter twitter-share' href="#">
-							<span class="tweet">TWEET</span>
 						</a> -->
 						<a ng-click='vm.removeFromStash(item._id)' class='stash'  href="#">
 							<span class='stash pointer'>REMOVE</span>

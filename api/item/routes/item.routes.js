@@ -3,25 +3,29 @@ var Item       = require('../models/item');
 var itemService = require('../services/itemService.js');
 
 module.exports = function(app, express) {
+	app.get('/api/items', itemService.getAll);
+	app.post('/api/items', itemService.createItem);
 
-	var itemRouter = express.Router();
+	app.get('/api/items/:item_id', itemService.findItem);
+	app.put('/api/items/:item_id', itemService.editItem);
+	app.delete('/api/items/:item_id', itemService.deleteItem);
 
-	// itemRouter.use(function (req, res, next) {
-	// 	console.log(req.method, req.url);
-	// 	next();
-	// });
+	app.get('/api/category/:name', itemService.getItemsByCategory);
 
-	itemRouter.route('/items/')
-		.get(itemService.getAll)
-		.post(itemService.createItem);
 
-	itemRouter.route('/items/:item_id')
-		.get(itemService.findItem)
-		.put(itemService.editItem)
-		.delete(itemService.deleteItem);
+	// var itemRouter = express.Router();
 
-	itemRouter.route('/category/:name') 
-		.get(itemService.getItemsByCategory);
+	// itemRouter.route('/items/')
+	// 	.get(itemService.getAll)
+	// 	.post(itemService.createItem);
 
-	return itemRouter;
+	// itemRouter.route('/items/:item_id')
+	// 	.get(itemService.findItem)
+	// 	.put(itemService.editItem)
+	// 	.delete(itemService.deleteItem);
+
+	// itemRouter.route('/category/:name') 
+	// 	.get(itemService.getItemsByCategory);
+
+	// return itemRouter;
 };

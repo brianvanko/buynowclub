@@ -5,6 +5,7 @@ angular.module('BuyNowClub').factory('Item', function($http, API_URL) {
 	var itemFactory = {};
 
 	itemFactory.findItem = function(id) {
+		console.log('finding item');
 		return $http.get(API_URL + 'api/items/' + id);
 	};
 
@@ -13,7 +14,7 @@ angular.module('BuyNowClub').factory('Item', function($http, API_URL) {
 	};
 
 	itemFactory.filterByCategory = function(category) {
-		return $http.get(API_URL + 'api/items/category/' + category);
+		return $http.get(API_URL + 'api/category/' + category);
 	};
 
 	itemFactory.create = function(itemData) {

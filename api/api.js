@@ -7,6 +7,7 @@ var express = require('express'),
     morgan = require('morgan'),
     config = require('./config'),
  	app = express(),
+ 	path = require('path'),
  	userRoutes,
  	apiRoutes;
 
@@ -18,9 +19,8 @@ app.use(morgan('dev'));
 ////// CORS //////
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Origin', 'https://www.facebook.com');
+	//res.header('Access-Control-Allow-Origin', 'localhost:3000');
 	res.header('Access-Control-Allow-Origin', 'https://buynowclub.herokuapp.com');
-	res.header('Access-Control-Allow-Origin', 'https://s-static.ak.facebook.com/');
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
@@ -37,8 +37,7 @@ mongoose.connect(config.DB_URL);
 itemRoutes = require('./item/routes/item.routes')(app, express);
 userRoutes = require('./user/routes/user.routes')(app, express);
 
-
-app.use('/api', itemRoutes);
+//app.use('/api', itemRoutes);
 
 // CATCH ALL AND DEFAULT INDEX
 app.get('*', function(req, res) {
@@ -48,5 +47,5 @@ app.get('*', function(req, res) {
 ////// CREATE SERVER //////
 var server = app.listen(port, function () {
 	console.log('api listening on ', server.address().port);
-	//require('./document')(app._router.stack, 'express');
+	require('./document')(app._router.stack, 'express');
 });

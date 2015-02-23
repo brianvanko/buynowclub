@@ -7,7 +7,7 @@ console.log('\nAPI for this service \n');
 if(src == 'restify')
 { 
 	console.log('\n********************************************');
-	console.log('\t\tRESTIFY');
+	console.log('\t\tRESTIFY ENDPOINTS');
 	console.log('********************************************\n');
 	for (var key in routes) {
 	  if (routes.hasOwnProperty(key)) {
@@ -22,7 +22,7 @@ if(src == 'restify')
 else
 {
 	console.log('\n********************************************');
-	console.log('\t\tEXPRESS');
+	console.log('\t\tEXPRESS ENDPOINTS');
 	console.log('********************************************\n');
 	for (var key in routes) {
 		if (routes.hasOwnProperty(key)) {

@@ -18,10 +18,10 @@
 					<a ui-sref="main">HOME</a>
 				</li>
 				<li ui-sref-active="active">
-					<a ui-sref="tech">TECH</a>
+					<a ui-sref="categoryListing({categoryName:'tech'})">TECH</a>
 				</li>
 				<li ui-sref-active="active">
-					<a ui-sref="vices">VICES</a>
+					<a ui-sref="categoryListing({categoryName:'vices'})">VICES</a>
 				</li>
 				<li ng-show="isAuthenticated()" ui-sref-active="active">
 					<a ui-sref="favorites">FAVORITES</a>

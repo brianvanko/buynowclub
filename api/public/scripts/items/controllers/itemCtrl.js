@@ -8,15 +8,14 @@ angular.module("BuyNowClub")
 	vm.categoryFilter = '';
 
 	vm.fb_share = function(item){
-		
 		FB.ui({
 		  method: 'feed',
-		  redirect_uri:'https://buynowclub.herokuapp.com',
+		  redirect_uri: API_URL,
 		  name: item.name,
 		  caption: 'New on Buy Now Club',
 		  description: item.description,
-		  picture: "https://buynowclub.herokuapp.com/images/thumb/" + item.thumb,
-		  link: 'https://buynowclub.herokuapp.com' //   /items/' + item._id
+		  picture: API_URL + "images/thumb/" + item.thumb,
+		  link: API_URL // 'http://localhost:3000' //   /items/' + item._id
 		  
 		}, function(response){});
 	}
@@ -31,10 +30,8 @@ angular.module("BuyNowClub")
 		  })
 	}
 
-	vm.filterCategory = function(searchReq) {
-		console.log('cat searchReq: ' + searchReq);
-		vm.categoryFilter = searchReq;
-		
+	vm.filterCategory = function() {
+		vm.categoryFilter = $stateParams.categoryName;
 	}
 
 	vm.clearFilter = function() {
@@ -43,9 +40,7 @@ angular.module("BuyNowClub")
 	}
 
 	vm.searchTxt = function(searchReq) {
-		//console.log('searchReq: ' + searchReq, vm.items);
 		//vm.searchText = searchReq;
-
 		//vm.items = vm.items | filter: {{categories:searchReq}};
 	}
 	
@@ -109,15 +104,34 @@ angular.module("BuyNowClub")
 	}
 })
 
-.controller("itemCategoryController", function(Item, $routeParams, API_URL) {
-	console.log('-----------ITEM CATEGORY', $routeParams.category)
-
+.controller("itemCategoryController", function(items, User, $rootScope) {
 	var vm = this;
-	Item.filterByCategory($routeParams.category)
-		.success(function(data) {
-			console.log('success category controller')
-			vm.items = data;
-		});
+	vm.items = items;
+
+	vm.saveToStash = function(itemId) {
+		console.log('clicked save to stash')
+		User.saveToStash($rootScope.currentUser._id, itemId)
+		.success(function(data, status, headers, config) {
+
+    		$rootScope.currentUser.favorites.push(data.itemId);
+		  })
+	}
+})
+
+.controller("itemSubcategoryController", function($stateParams, items, User, $rootScope) {
+	var vm = this;
+	vm.items = items.filter(function(item, index, collection){
+		return item.subcategory.toLowerCase() == $stateParams.subcategoryName;
+	}) 
+	
+	vm.saveToStash = function(itemId) {
+		console.log('clicked save to stash')
+		User.saveToStash($rootScope.currentUser._id, itemId)
+		.success(function(data, status, headers, config) {
+
+    		$rootScope.currentUser.favorites.push(data.itemId);
+		  })
+	}
 })
 
 .controller('itemViewController', function($stateParams, API_URL, Item) {
