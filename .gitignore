@@ -1,9 +1,46 @@
+# Dependencies
 node_modules
-"**/.*
-test
-tests
-.DS_Store
-
 api/node_modules
 frontend/node_modules
 frontend/bower_components
+
+# Next.js
+.next
+out
+build
+dist
+
+# Environment variables
+.env
+.env*.local
+
+# Database dumps and backups
+psjwt/
+*.bson
+*.dump
+backups/
+db_backups/
+
+# Testing
+test
+tests
+coverage
+.nyc_output
+
+# Misc
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,45 +1,37 @@
 {
-  "name": "api",
-  "version": "1.0.0",
+  "name": "buynowclub",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "start": "node api/api.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "restore-data": "node scripts/restore-data.js"
   },
-  "description": "",
-  "main": "api.js",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.11.0",
-    "cli-table": "^0.3.1",
-    "crypto": "0.0.3",
-    "express": "^4.11.2",
-    "fs": "0.0.2",
-    "jwt-simple": "^0.2.0",
-    "moment": "^2.9.0",
-    "mongoose": "^3.8.23",
-    "morgan": "^1.5.1",
-    "nodemailer": "^1.3.0",
-    "nodemailer-smtp-transport": "^0.1.13",
-    "passport": "^0.2.1",
-    "passport-google": "^0.3.0",
-    "passport-local": "^1.0.0",
-    "querystring": "^0.2.0",
-    "request": "^2.53.0",
-    "underscore": "^1.7.0"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.6.1",
+    "mongoose": "^8.0.0",
+    "next": "^15.0.0",
+    "next-auth": "^4.24.11",
+    "nodemailer": "^6.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.4",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-angular-templatecache": "^1.5.0",
-    "gulp-complexity": "^0.3.0",
-    "gulp-concat": "^2.5.0",
-    "gulp-csso": "^1.0.0",
-    "gulp-header": "^1.2.2",
-    "gulp-ng-annotate": "^0.5.2",
-    "gulp-recess": "^1.1.1",
-    "gulp-uglify": "^1.1.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5"
+  }
 }
